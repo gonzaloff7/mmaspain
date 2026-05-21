@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+	
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Settings MMA</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            #080808,
+                            #111
+                    );
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 25px;
+        }
+
+        h1 {
+
+            text-align: center;
+
+            font-size: 42px;
+
+            margin-bottom: 40px;
+        }
+
+        .section {
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 28px;
+
+            padding: 10px;
+
+            margin-bottom: 28px;
+
+            box-shadow:
+                    0 10px 30px rgba(0,0,0,0.45);
+        }
+
+        .section-title {
+
+            color: gold;
+
+            font-size: 15px;
+
+            letter-spacing: 1px;
+
+            padding: 18px 20px 10px 20px;
+
+            text-transform: uppercase;
+        }
+
+        .item {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 22px;
+
+            border-bottom: 1px solid #2a2a2a;
+
+            font-size: 20px;
+
+            transition: 0.3s;
+
+            border-radius: 18px;
+
+            color: white;
+        }
+
+        .item:hover {
+
+            background-color: rgba(255,255,255,0.05);
+
+            transform: scale(1.01);
+        }
+
+        .item:last-child {
+
+            border-bottom: none;
+        }
+
+        .left {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        .icon {
+
+            font-size: 24px;
+        }
+
+        .premium {
+
+            color: gold;
+
+            font-weight: bold;
+        }
+
+        .status {
+
+            color: lightgray;
+
+            font-size: 16px;
+        }
+
+        a {
+
+            text-decoration: none;
+        }
+
+        .buttons {
+
+            margin-top: 35px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 18px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+
+            transform: scale(1.02);
+        }
+
+        .logout {
+
+            background:
+                    linear-gradient(
+                            to right,
+                            darkred,
+                            #550000
+                    );
+
+            color: white;
+        }
+
+        .volver {
+
+            background:
+                    linear-gradient(
+                            to right,
+                            #222,
+                            #333
+                    );
+
+            color: white;
+        }
+
+        @media(max-width: 700px) {
+
+            h1 {
+
+                font-size: 32px;
+            }
+
+            .item {
+
+                font-size: 17px;
+
+                padding: 18px;
+            }
+
+            .status {
+
+                font-size: 14px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>
+    ⚙️ Settings MMA
+</h1>
+
+<!-- CUENTA -->
+
+<div class="section">
+
+    <div class="section-title">
+
+        Cuenta
+
+    </div>
+
+    <a href="/editarPerfil">
+
+        <div class="item">
+
+            <div class="left">
+
+                <div class="icon">
+
+                    👤
+
+                </div>
+
+                <div>
+
+                    Editar perfil
+
+                </div>
+
+            </div>
+
+            ➜
+
+        </div>
+
+    </a>
+
+    <div class="item">
+
+        <div class="left">
+
+            <div class="icon">
+
+                📧
+
+            </div>
+
+            <div>
+
+                Email
+
+            </div>
+
+        </div>
+
+        <div class="status"
+             th:text="${usuario.email}">
+        </div>
+
+    </div>
+
+    <a href="/premiumPage">
+
+        <div class="item premium">
+
+            <div class="left">
+
+                <div class="icon">
+
+                    👑
+
+                </div>
+
+                <div>
+
+                    MMA Spain Premium
+
+                </div>
+
+            </div>
+
+            ➜
+
+        </div>
+
+    </a>
+
+    <a th:if="${usuario.admin}"
+       href="/admin">
+
+        <div class="item">
+
+            <div class="left">
+
+                <div class="icon">
+
+                    🛡️
+
+                </div>
+
+                <div>
+
+                    Panel Admin
+
+                </div>
+
+            </div>
+
+            ➜
+
+        </div>
+
+    </a>
+
+</div>
+
+<!-- APP -->
+
+<div class="section">
+
+    <div class="section-title">
+
+        Aplicación
+
+    </div>
+
+    <a href="/notificaciones">
+
+        <div class="item">
+
+            <div class="left">
+
+                <div class="icon">
+
+                    🔔
+
+                </div>
+
+                <div>
+
+                    Notificaciones
+
+                </div>
+
+            </div>
+
+            <div class="status"
+                 th:text="${usuario.notificaciones ? 'ON' : 'OFF'}">
+            </div>
+
+        </div>
+
+    </a>
+
+    <a href="/help">
+
+        <div class="item">
+
+            <div class="left">
+
+                <div class="icon">
+
+                    ❓
+
+                </div>
+
+                <div>
+
+                    Help Center
+
+                </div>
+
+            </div>
+
+            ➜
+
+        </div>
+
+    </a>
+
+    <a href="/privacy">
+
+        <div class="item">
+
+            <div class="left">
+
+                <div class="icon">
+
+                    📜
+
+                </div>
+
+                <div>
+
+                    Privacy Policy
+
+                </div>
+
+            </div>
+
+            ➜
+
+        </div>
+
+    </a>
+
+</div>
+
+<!-- BOTONES -->
+
+<div class="buttons">
+
+    <a href="/logout">
+
+        <button class="logout">
+
+            🚪 Cerrar sesión
+
+        </button>
+
+    </a>
+
+    <a href="/home">
+
+        <button class="volver">
+
+            ⬅ Volver Home
+
+        </button>
+
+    </a>
+
+</div>
+
+</body>
+</html>

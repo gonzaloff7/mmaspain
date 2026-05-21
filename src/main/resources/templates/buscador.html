@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+		  
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Buscador MMA</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            #080808,
+                            #111
+                    );
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 25px;
+        }
+
+        .volver {
+
+            display: inline-block;
+
+            margin-bottom: 30px;
+
+            padding: 14px 20px;
+
+            background-color: #1e1e1e;
+
+            border: 1px solid #333;
+
+            border-radius: 16px;
+
+            color: white;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .volver:hover {
+
+            background-color: red;
+        }
+
+        h1 {
+
+            text-align: center;
+
+            font-size: 42px;
+
+            margin-bottom: 35px;
+        }
+
+        .search-box {
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(16px);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 24px;
+
+            padding: 25px;
+
+            margin-bottom: 35px;
+
+            box-shadow:
+                    0 10px 30px rgba(0,0,0,0.45);
+        }
+
+        input {
+
+            width: 100%;
+
+            padding: 20px;
+
+            background-color: #1d1d1d;
+
+            color: white;
+
+            border: 1px solid #333;
+
+            border-radius: 18px;
+
+            font-size: 18px;
+
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+        input:focus {
+
+            border-color: red;
+
+            box-shadow:
+                    0 0 20px rgba(255,0,0,0.2);
+        }
+
+        .peleador {
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(16px);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 28px;
+
+            padding: 30px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                    0 10px 30px rgba(0,0,0,0.45);
+
+            transition: 0.3s;
+        }
+
+        .peleador:hover {
+
+            transform: translateY(-5px);
+
+            border-color: red;
+        }
+
+        .top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+
+            flex-wrap: wrap;
+
+            gap: 20px;
+        }
+
+        .nombre {
+
+            font-size: 32px;
+
+            font-weight: bold;
+        }
+
+        .apodo {
+
+            margin-top: 10px;
+
+            color: gold;
+
+            font-size: 18px;
+        }
+
+        .record {
+
+            background:
+                    linear-gradient(
+                            to right,
+                            red,
+                            darkred
+                    );
+
+            padding: 14px 22px;
+
+            border-radius: 18px;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            box-shadow:
+                    0 8px 20px rgba(255,0,0,0.25);
+        }
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                    repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 18px;
+        }
+
+        .card {
+
+            background-color: #1b1b1b;
+
+            border: 1px solid #2d2d2d;
+
+            border-radius: 20px;
+
+            padding: 22px;
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+
+            border-color: red;
+        }
+
+        .label {
+
+            color: gold;
+
+            font-size: 14px;
+
+            margin-bottom: 12px;
+
+            letter-spacing: 1px;
+        }
+
+        .valor {
+
+            font-size: 22px;
+
+            font-weight: bold;
+        }
+
+        .empty {
+
+            text-align: center;
+
+            margin-top: 60px;
+
+            color: lightgray;
+
+            font-size: 22px;
+        }
+
+        @media(max-width: 700px) {
+
+            h1 {
+
+                font-size: 32px;
+            }
+
+            .nombre {
+
+                font-size: 26px;
+            }
+
+            .top {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .record {
+
+                width: 100%;
+
+                text-align: center;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<a href="/home"
+   class="volver">
+
+    ⬅ Volver Home
+
+</a>
+
+<h1>
+    🔍 Buscador MMA
+</h1>
+
+<div class="search-box">
+
+    <form action="/buscador"
+          method="get">
+
+        <input type="text"
+               name="nombre"
+               placeholder="Buscar peleador MMA..."
+               th:value="${busqueda}">
+
+    </form>
+
+</div>
+
+<div th:if="${#lists.isEmpty(peleadores)}"
+     class="empty">
+
+    😢 No se encontraron peleadores
+
+</div>
+
+<div th:each="p : ${peleadores}"
+     class="peleador">
+
+    <div class="top">
+
+        <div>
+
+            <div class="nombre">
+
+                <span th:text="${p.nombre}"></span>
+
+            </div>
+
+            <div class="apodo">
+
+                “<span th:text="${p.apodo}"></span>”
+
+            </div>
+
+        </div>
+
+        <div class="record">
+
+            <span th:text="${p.victorias}"></span>
+
+            -
+
+            <span th:text="${p.derrotas}"></span>
+
+        </div>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="card">
+
+            <div class="label">
+
+                🌍 NACIONALIDAD
+
+            </div>
+
+            <div class="valor"
+                 th:text="${p.nacionalidad}">
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="label">
+
+                ⚖️ CATEGORÍA
+
+            </div>
+
+            <div class="valor"
+                 th:text="${p.peso}">
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="label">
+
+                🏆 ORGANIZACIÓN
+
+            </div>
+
+            <div class="valor"
+                 th:text="${p.organizacion}">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

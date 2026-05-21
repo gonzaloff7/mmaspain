@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+		  
+    <meta charset="UTF-8">
+
+    <title>Banear usuarios</title>
+
+    <style>
+
+        body {
+
+            background-color: #111;
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 40px;
+        }
+
+        h1 {
+
+            color: gold;
+
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+        .usuario {
+
+            background-color: #222;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .nombre {
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: white;
+        }
+
+        .estado {
+
+            margin-top: 10px;
+
+            color: red;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 12px;
+
+            margin-top: 15px;
+
+            background-color: darkred;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>
+    🚫 Banear usuarios
+</h1>
+
+<div th:each="u : ${usuarios}"
+
+     class="usuario">
+
+    <div class="nombre">
+
+        <span th:text="${u.nombre}"></span>
+
+    </div>
+
+    <div class="estado"
+
+         th:if="${u.baneado}">
+
+        🚫 Usuario baneado
+
+    </div>
+
+    <a th:if="${!u.baneado}"
+
+       th:href="@{/banear(id=${u.id})}">
+
+        <button>
+
+            🚫 Banear usuario
+
+        </button>
+
+    </a>
+
+</div>
+
+<a href="/admin">
+
+    <button>
+
+        ⬅ Volver
+
+    </button>
+
+</a>
+
+</body>
+</html>

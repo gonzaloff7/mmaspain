@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+		  
+	
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Privacy Policy</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            #080808,
+                            #111
+                    );
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 25px;
+        }
+
+        .container {
+
+            max-width: 900px;
+
+            margin: auto;
+        }
+
+        h1 {
+
+            text-align: center;
+
+            font-size: 42px;
+
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: lightgray;
+
+            margin-bottom: 45px;
+
+            font-size: 18px;
+        }
+
+        .card {
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 28px;
+
+            padding: 35px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                    0 10px 30px rgba(0,0,0,0.45);
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+
+            transform: translateY(-5px);
+
+            border-color: gold;
+        }
+
+        .titulo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: gold;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            margin-bottom: 18px;
+        }
+
+        .texto {
+
+            color: #e2e2e2;
+
+            line-height: 1.9;
+
+            font-size: 17px;
+        }
+
+        .highlight {
+
+            color: gold;
+
+            font-weight: bold;
+        }
+
+        .support {
+
+            background:
+                    linear-gradient(
+                            to right,
+                            rgba(255,215,0,0.12),
+                            rgba(255,255,255,0.03)
+                    );
+
+            border: 1px solid rgba(255,215,0,0.2);
+        }
+
+        .email {
+
+            margin-top: 18px;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: white;
+        }
+
+        .buttons {
+
+            margin-top: 35px;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 20px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            background:
+                    linear-gradient(
+                            to right,
+                            gold,
+                            #d4a200
+                    );
+
+            color: black;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                    0 10px 30px rgba(255,215,0,0.2);
+        }
+
+        button:hover {
+
+            transform: scale(1.02);
+        }
+
+        @media(max-width: 700px) {
+
+            h1 {
+
+                font-size: 32px;
+            }
+
+            .titulo {
+
+                font-size: 20px;
+            }
+
+            .texto {
+
+                font-size: 16px;
+            }
+
+            .card {
+
+                padding: 25px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>
+        📜 Privacy Policy
+    </h1>
+
+    <div class="subtitle">
+
+        Tu privacidad y seguridad son importantes para MMA Spain 🔒
+
+    </div>
+
+    <div class="card">
+
+        <div class="titulo">
+
+            👤 Información recopilada
+
+        </div>
+
+        <div class="texto">
+
+            MMA Spain recopila información básica del usuario,
+            incluyendo nombre, email, biografía,
+            estadísticas y actividad dentro de la plataforma.
+
+            <br><br>
+
+            Esta información se utiliza únicamente
+            para mejorar la experiencia de usuario
+            y personalizar funciones dentro de la app.
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="titulo">
+
+            🔐 Protección de datos
+
+        </div>
+
+        <div class="texto">
+
+            Toda la información almacenada
+            se protege mediante sistemas internos
+            de seguridad y autenticación.
+
+            <br><br>
+
+            <span class="highlight">
+
+                MMA Spain no vende ni comparte datos personales con terceros.
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="titulo">
+
+            📊 Actividad dentro de la app
+
+        </div>
+
+        <div class="texto">
+
+            Las predicciones, comentarios,
+            puntuaciones y estadísticas
+            se almacenan exclusivamente
+            para generar rankings,
+            perfiles personalizados
+            y funciones competitivas de la plataforma.
+
+        </div>
+
+    </div>
+
+    <div class="card support">
+
+        <div class="titulo">
+
+            📩 Contacto oficial
+
+        </div>
+
+        <div class="texto">
+
+            Si tienes dudas relacionadas
+            con privacidad, eliminación de datos
+            o seguridad de la cuenta,
+            puedes contactar con el soporte oficial.
+
+        </div>
+
+        <div class="email">
+
+            soporte@mmaspain.com
+
+        </div>
+
+    </div>
+
+    <div class="buttons">
+
+        <a href="/settings">
+
+            <button>
+
+                ⬅ Volver Settings
+
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

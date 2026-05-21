@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+		  
+		  
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Help Center</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            #080808,
+                            #111
+                    );
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 25px;
+        }
+
+        .container {
+
+            max-width: 850px;
+
+            margin: auto;
+        }
+
+        h1 {
+
+            text-align: center;
+
+            font-size: 42px;
+
+            margin-bottom: 40px;
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: lightgray;
+
+            margin-bottom: 45px;
+
+            font-size: 18px;
+        }
+
+        .card {
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 28px;
+
+            padding: 30px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                    0 10px 30px rgba(0,0,0,0.45);
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+
+            transform: translateY(-5px);
+
+            border-color: gold;
+        }
+
+        .titulo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: gold;
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            margin-bottom: 18px;
+        }
+
+        .texto {
+
+            color: #e2e2e2;
+
+            line-height: 1.8;
+
+            font-size: 17px;
+        }
+
+        .support {
+
+            background:
+                    linear-gradient(
+                            to right,
+                            rgba(255,215,0,0.15),
+                            rgba(255,255,255,0.03)
+                    );
+
+            border: 1px solid rgba(255,215,0,0.25);
+        }
+
+        .email {
+
+            margin-top: 18px;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            color: white;
+        }
+
+        .buttons {
+
+            margin-top: 35px;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 20px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            background:
+                    linear-gradient(
+                            to right,
+                            gold,
+                            #d4a200
+                    );
+
+            color: black;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                    0 10px 30px rgba(255,215,0,0.2);
+        }
+
+        button:hover {
+
+            transform: scale(1.02);
+        }
+
+        @media(max-width: 700px) {
+
+            h1 {
+
+                font-size: 32px;
+            }
+
+            .titulo {
+
+                font-size: 20px;
+            }
+
+            .texto {
+
+                font-size: 16px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>
+        ❓ Help Center
+    </h1>
+
+    <div class="subtitle">
+
+        Todo lo que necesitas para dominar MMA Spain 🔥
+
+    </div>
+
+    <div class="card">
+
+        <div class="titulo">
+
+            🥊 ¿Cómo funcionan las predicciones?
+
+        </div>
+
+        <div class="texto">
+
+            Predice ganador, método y round para ganar XP,
+            mejorar tu precisión y subir puestos en el ranking global.
+            Cuantas más predicciones correctas tengas,
+            más nivel y prestigio conseguirás dentro de MMA Spain.
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="titulo">
+
+            👑 ¿Qué incluye Premium?
+
+        </div>
+
+        <div class="texto">
+
+            MMA Spain Premium desbloquea funciones exclusivas:
+            estadísticas avanzadas, perfiles premium,
+            mejoras visuales, futuras recompensas VIP
+            y acceso prioritario a nuevas funciones de la plataforma.
+
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="titulo">
+
+            📈 ¿Cómo subir de nivel?
+
+        </div>
+
+        <div class="texto">
+
+            Ganarás XP realizando predicciones,
+            comentando en foros y participando activamente.
+            Los usuarios más activos aparecerán
+            en el ranking competitivo de MMA Spain.
+
+        </div>
+
+    </div>
+
+    <div class="card support">
+
+        <div class="titulo">
+
+            📩 Contacto y soporte
+
+        </div>
+
+        <div class="texto">
+
+            Si tienes problemas técnicos,
+            errores en la cuenta o dudas sobre Premium,
+            puedes contactar directamente con el soporte oficial.
+
+        </div>
+
+        <div class="email">
+
+            soporte@mmaspain.com
+
+        </div>
+
+    </div>
+
+    <div class="buttons">
+
+        <a href="/settings">
+
+            <button>
+
+                ⬅ Volver Settings
+
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

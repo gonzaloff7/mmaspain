@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+	
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Ranking MMA</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            #080808,
+                            #111
+                    );
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 25px;
+        }
+
+        h1 {
+
+            text-align: center;
+
+            font-size: 42px;
+
+            margin-bottom: 40px;
+        }
+
+        .top3 {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 25px;
+
+            margin-bottom: 50px;
+        }
+
+        .podium {
+
+            border-radius: 28px;
+
+            padding: 30px;
+
+            text-align: center;
+
+            backdrop-filter: blur(18px);
+
+            box-shadow:
+                    0 10px 35px rgba(0,0,0,0.5);
+
+            transition: 0.3s;
+        }
+
+        .podium:hover {
+
+            transform: translateY(-8px);
+        }
+
+        .gold {
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            #3b3000,
+                            #1a1a1a
+                    );
+
+            border: 2px solid gold;
+
+            box-shadow:
+                    0 0 30px rgba(255,215,0,0.25);
+        }
+
+        .silver {
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            #3a3a3a,
+                            #1a1a1a
+                    );
+
+            border: 2px solid silver;
+        }
+
+        .bronze {
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            #4a2c18,
+                            #1a1a1a
+                    );
+
+            border: 2px solid #cd7f32;
+        }
+
+        .puesto {
+
+            font-size: 18px;
+
+            margin-bottom: 15px;
+
+            color: lightgray;
+        }
+
+        .medalla {
+
+            font-size: 45px;
+
+            margin-bottom: 18px;
+        }
+
+        .nombre {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+        .porcentaje {
+
+            font-size: 36px;
+
+            font-weight: bold;
+        }
+
+        .sub {
+
+            margin-top: 10px;
+
+            color: lightgray;
+        }
+
+        .lista {
+
+            margin-top: 20px;
+        }
+
+        .usuario {
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(16px);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 24px;
+
+            padding: 24px;
+
+            margin-bottom: 20px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            transition: 0.3s;
+
+            box-shadow:
+                    0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .usuario:hover {
+
+            transform: translateY(-4px);
+
+            border-color: red;
+        }
+
+        .izquierda {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+        }
+
+        .rank {
+
+            width: 50px;
+
+            height: 50px;
+
+            border-radius: 50%;
+
+            background-color: #1d1d1d;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-weight: bold;
+
+            font-size: 20px;
+
+            border: 1px solid #333;
+        }
+
+        .datos {
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .nombre-lista {
+
+            font-size: 22px;
+
+            font-weight: bold;
+        }
+
+        .xp {
+
+            color: lightgray;
+
+            margin-top: 5px;
+        }
+
+        .derecha {
+
+            text-align: right;
+        }
+
+        .precision {
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            color: gold;
+        }
+
+        .precision-text {
+
+            color: lightgray;
+
+            margin-top: 5px;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 18px;
+
+            margin-top: 35px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            background:
+                    linear-gradient(
+                            to right,
+                            red,
+                            darkred
+                    );
+
+            color: white;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+
+            transform: scale(1.02);
+        }
+
+        @media(max-width: 700px) {
+
+            h1 {
+
+                font-size: 32px;
+            }
+
+            .usuario {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 20px;
+            }
+
+            .derecha {
+
+                width: 100%;
+
+                text-align: left;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>
+    🏆 Ranking MMA
+</h1>
+
+<!-- TOP 3 -->
+
+<div class="top3">
+
+    <!-- TOP 1 -->
+
+    <div th:if="${ranking.size() > 0}"
+         class="podium gold">
+
+        <div class="puesto">
+
+            #1
+
+        </div>
+
+        <div class="medalla">
+
+            👑
+
+        </div>
+
+        <div class="nombre">
+
+            <span th:text="${ranking[0].nombre}"></span>
+
+        </div>
+
+        <div class="porcentaje">
+
+            <span th:text="${#numbers.formatDecimal(
+                    ranking[0].porcentaje,
+                    1,
+                    1
+            )}">
+            </span>%
+
+        </div>
+
+        <div class="sub">
+
+            Campeón MMA Spain
+
+        </div>
+
+    </div>
+
+    <!-- TOP 2 -->
+
+    <div th:if="${ranking.size() > 1}"
+         class="podium silver">
+
+        <div class="puesto">
+
+            #2
+
+        </div>
+
+        <div class="medalla">
+
+            🥈
+
+        </div>
+
+        <div class="nombre">
+
+            <span th:text="${ranking[1].nombre}"></span>
+
+        </div>
+
+        <div class="porcentaje">
+
+            <span th:text="${#numbers.formatDecimal(
+                    ranking[1].porcentaje,
+                    1,
+                    1
+            )}">
+            </span>%
+
+        </div>
+
+        <div class="sub">
+
+            Top contender
+
+        </div>
+
+    </div>
+
+    <!-- TOP 3 -->
+
+    <div th:if="${ranking.size() > 2}"
+         class="podium bronze">
+
+        <div class="puesto">
+
+            #3
+
+        </div>
+
+        <div class="medalla">
+
+            🥉
+
+        </div>
+
+        <div class="nombre">
+
+            <span th:text="${ranking[2].nombre}"></span>
+
+        </div>
+
+        <div class="porcentaje">
+
+            <span th:text="${#numbers.formatDecimal(
+                    ranking[2].porcentaje,
+                    1,
+                    1
+            )}">
+            </span>%
+
+        </div>
+
+        <div class="sub">
+
+            Rising contender
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- RESTO -->
+
+<div class="lista">
+
+    <div th:each="u, stat : ${ranking}"
+         th:if="${stat.index > 2}"
+         class="usuario">
+
+        <div class="izquierda">
+
+            <div class="rank">
+
+                #<span th:text="${stat.count}"></span>
+
+            </div>
+
+            <div class="datos">
+
+                <div class="nombre-lista">
+
+                    <span th:text="${u.nombre}"></span>
+
+                </div>
+
+                <div class="xp">
+
+                    🏆 Usuario competitivo
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="derecha">
+
+            <div class="precision">
+
+                <span th:text="${#numbers.formatDecimal(
+                        u.porcentaje,
+                        1,
+                        1
+                )}">
+                </span>%
+
+            </div>
+
+            <div class="precision-text">
+
+                Precisión
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<a href="/home">
+
+    <button>
+
+        ⬅ Volver Home
+
+    </button>
+
+</a>
+
+</body>
+</html>

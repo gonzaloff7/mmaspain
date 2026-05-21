@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+		  
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Perfil MMA</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            #080808,
+                            #111
+                    );
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 25px;
+        }
+
+        .perfil {
+
+            max-width: 850px;
+
+            margin: auto;
+        }
+
+        .header {
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(18px);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 30px;
+
+            padding: 35px;
+
+            text-align: center;
+
+            box-shadow:
+                    0 12px 35px rgba(0,0,0,0.55);
+
+            margin-bottom: 30px;
+        }
+
+        .avatar {
+
+            width: 120px;
+
+            height: 120px;
+
+            border-radius: 50%;
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            red,
+                            darkred
+                    );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 50px;
+
+            margin: auto;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                    0 0 30px rgba(255,0,0,0.4);
+        }
+
+        .nombre {
+
+            font-size: 38px;
+
+            font-weight: bold;
+        }
+
+        .premium {
+
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 10px 18px;
+
+            border-radius: 16px;
+
+            background:
+                    linear-gradient(
+                            to right,
+                            gold,
+                            #d4a200
+                    );
+
+            color: black;
+
+            font-weight: bold;
+
+            box-shadow:
+                    0 0 20px rgba(255,215,0,0.35);
+        }
+
+        .nivel {
+
+            margin-top: 20px;
+
+            font-size: 20px;
+
+            color: lightgray;
+        }
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                    repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 20px;
+        }
+
+        .card {
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(16px);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 24px;
+
+            padding: 28px;
+
+            box-shadow:
+                    0 8px 25px rgba(0,0,0,0.45);
+
+            transition: 0.3s;
+        }
+
+        .card:hover {
+
+            transform: translateY(-5px);
+
+            border-color: red;
+        }
+
+        .titulo {
+
+            color: gold;
+
+            font-size: 15px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 15px;
+
+            text-transform: uppercase;
+        }
+
+        .valor {
+
+            font-size: 34px;
+
+            font-weight: bold;
+        }
+
+        .sub {
+
+            margin-top: 10px;
+
+            color: lightgray;
+
+            font-size: 15px;
+        }
+
+        .bio {
+
+            margin-top: 30px;
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            border-radius: 24px;
+
+            padding: 30px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            box-shadow:
+                    0 8px 25px rgba(0,0,0,0.45);
+        }
+
+        .bio-title {
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            margin-bottom: 18px;
+
+            color: gold;
+        }
+
+        .bio-text {
+
+            color: #e5e5e5;
+
+            line-height: 1.7;
+
+            font-size: 16px;
+        }
+
+        .acciones {
+
+            margin-top: 35px;
+
+            display: flex;
+
+            gap: 20px;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 18px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .home {
+
+            background:
+                    linear-gradient(
+                            to right,
+                            red,
+                            darkred
+                    );
+
+            color: white;
+        }
+
+        .editar {
+
+            background:
+                    linear-gradient(
+                            to right,
+                            gold,
+                            #d4a200
+                    );
+
+            color: black;
+        }
+
+        button:hover {
+
+            transform: scale(1.03);
+        }
+
+        @media(max-width: 700px) {
+
+            .nombre {
+
+                font-size: 30px;
+            }
+
+            .valor {
+
+                font-size: 28px;
+            }
+
+            .acciones {
+
+                flex-direction: column;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="perfil">
+
+    <div class="header">
+
+        <div class="avatar">
+
+            🥊
+
+        </div>
+
+        <div class="nombre"
+             th:text="${usuario.nombre}">
+        </div>
+
+        <div th:if="${usuario.premium}"
+             class="premium">
+
+            👑 PREMIUM MEMBER
+
+        </div>
+
+        <div class="nivel">
+
+            🏆 Nivel:
+            <span th:text="${usuario.nivel}"></span>
+
+        </div>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="card">
+
+            <div class="titulo">
+
+                XP TOTAL
+
+            </div>
+
+            <div class="valor"
+                 th:text="${usuario.xp}">
+            </div>
+
+            <div class="sub">
+
+                Experiencia acumulada
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="titulo">
+
+                PREDICCIONES
+
+            </div>
+
+            <div class="valor"
+                 th:text="${predicciones}">
+            </div>
+
+            <div class="sub">
+
+                Combates analizados
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="titulo">
+
+                ACIERTOS
+
+            </div>
+
+            <div class="valor"
+                 th:text="${aciertos}">
+            </div>
+
+            <div class="sub">
+
+                Predicciones correctas
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="titulo">
+
+                PORCENTAJE
+
+            </div>
+
+            <div class="valor">
+
+                <span th:text="${#numbers.formatDecimal(
+                        porcentaje,
+                        1,
+                        1
+                )}">
+                </span>%
+
+            </div>
+
+            <div class="sub">
+
+                Precisión total
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="titulo">
+
+                MÉTODO FAVORITO
+
+            </div>
+
+            <div class="valor"
+                 th:text="${metodo}">
+            </div>
+
+            <div class="sub">
+
+                Estilo de predicción
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="titulo">
+
+                RANGO MMA
+
+            </div>
+
+            <div class="valor"
+                 th:text="${rango}">
+            </div>
+
+            <div class="sub">
+
+                Clasificación actual
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="bio">
+
+        <div class="bio-title">
+
+            🔥 Bio del peleador
+
+        </div>
+
+        <div class="bio-text">
+
+            <span th:text="${usuario.bio != null && usuario.bio != '' 
+                    ? usuario.bio 
+                    : 'Este usuario todavía no ha añadido una bio.'}">
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="acciones">
+
+        <a href="/home"
+           style="width:100%;">
+
+            <button class="home">
+
+                ⬅ Volver Home
+
+            </button>
+
+        </a>
+
+        <a href="/editarPerfil"
+           style="width:100%;">
+
+            <button class="editar">
+
+                ✏️ Editar perfil
+
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

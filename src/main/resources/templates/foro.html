@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+		  
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Foro MMA</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            #0a0a0a,
+                            #111
+                    );
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 25px;
+        }
+
+        .volver {
+
+            display: inline-block;
+
+            margin-bottom: 30px;
+
+            padding: 12px 18px;
+
+            background-color: #1f1f1f;
+
+            border: 1px solid #333;
+
+            border-radius: 14px;
+
+            color: white;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .volver:hover {
+
+            background-color: red;
+        }
+
+        h1 {
+
+            text-align: center;
+
+            font-size: 38px;
+
+            margin-bottom: 35px;
+
+            color: white;
+        }
+
+        .comentario {
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(16px);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 24px;
+
+            padding: 22px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                    0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .usuario {
+
+            display: inline-block;
+
+            color: gold;
+
+            font-weight: bold;
+
+            font-size: 18px;
+
+            margin-bottom: 12px;
+
+            background:
+                    rgba(255,215,0,0.1);
+
+            padding: 8px 14px;
+
+            border-radius: 12px;
+
+            border: 1px solid rgba(255,215,0,0.25);
+        }
+
+        .texto {
+
+            color: #f1f1f1;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+        }
+
+        .form-box {
+
+            margin-top: 40px;
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(16px);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 28px;
+
+            padding: 25px;
+
+            box-shadow:
+                    0 10px 30px rgba(0,0,0,0.45);
+        }
+
+        .titulo-form {
+
+            font-size: 24px;
+
+            font-weight: bold;
+
+            margin-bottom: 20px;
+
+            color: white;
+        }
+
+        textarea {
+
+            width: 100%;
+
+            min-height: 130px;
+
+            background-color: #1e1e1e;
+
+            color: white;
+
+            border: 1px solid #333;
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            resize: none;
+
+            font-size: 16px;
+
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+        textarea:focus {
+
+            border-color: red;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 18px;
+
+            margin-top: 22px;
+
+            border: none;
+
+            border-radius: 18px;
+
+            background:
+                    linear-gradient(
+                            to right,
+                            red,
+                            darkred
+                    );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                    0 10px 25px rgba(255,0,0,0.25);
+        }
+
+        button:hover {
+
+            transform: scale(1.02);
+
+            opacity: 0.92;
+        }
+
+        @media(max-width: 600px) {
+
+            h1 {
+
+                font-size: 30px;
+            }
+
+            .usuario {
+
+                font-size: 16px;
+            }
+
+            .texto {
+
+                font-size: 15px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<a th:href="@{/evento(id=${evento})}"
+   class="volver">
+
+    ⬅ Volver cartelera
+
+</a>
+
+<h1>
+    💬 Foro MMA
+</h1>
+
+<div th:each="c : ${comentarios}"
+     class="comentario">
+
+    <div class="usuario">
+
+        👤
+
+        <span th:text="${c.usuario}"></span>
+
+    </div>
+
+    <div class="texto">
+
+        <span th:text="${c.texto}"></span>
+
+    </div>
+
+</div>
+
+<div class="form-box">
+
+    <div class="titulo-form">
+
+        🔥 Únete a la conversación
+
+    </div>
+
+    <form action="/comentar"
+          method="post">
+
+        <input type="hidden"
+               name="combate"
+               th:value="${combate}">
+
+        <input type="hidden"
+               name="evento"
+               th:value="${evento}">
+
+        <textarea name="texto"
+                  placeholder="Comparte tu análisis del combate..."></textarea>
+
+        <button type="submit">
+
+            🚀 Publicar comentario
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

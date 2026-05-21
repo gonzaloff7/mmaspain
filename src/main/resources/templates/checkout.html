@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+		  
+    <meta charset="UTF-8">
+
+    <title>Checkout Premium</title>
+
+    <style>
+
+        body {
+
+            background-color: #111;
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 30px;
+        }
+
+        .box {
+
+            background-color: #1b1b1b;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            max-width: 500px;
+
+            margin: auto;
+
+            border: 2px solid gold;
+        }
+
+        h1 {
+
+            color: gold;
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        input {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 15px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background-color: #333;
+
+            color: white;
+
+            font-size: 16px;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 16px;
+
+            margin-top: 25px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background-color: gold;
+
+            color: black;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>
+        💳 Checkout Premium
+    </h1>
+
+    <input type="text"
+           placeholder="Nombre tarjeta">
+
+    <input type="text"
+           placeholder="Número tarjeta">
+
+    <input type="text"
+           placeholder="MM/YY">
+
+    <input type="text"
+           placeholder="CVV">
+
+    <a href="/premium">
+
+        <button>
+
+            👑 Confirmar Suscripción
+
+        </button>
+
+    </a>
+	
+	<a href="/premiumPage">
+
+	    <button
+	        style="background-color: #444;
+	               color: white;">
+
+	        ⬅ Cancelar
+
+	    </button>
+
+	</a>
+
+</div>
+
+</body>
+</html>

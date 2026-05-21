@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+		  
+
+    <meta charset="UTF-8">
+
+    <title>Gestionar Premium</title>
+
+    <style>
+
+        body {
+
+            background-color: #111;
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 40px;
+        }
+
+        h1 {
+
+            color: gold;
+
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+        .usuario {
+
+            background-color: #222;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .nombre {
+
+            font-size: 22px;
+
+            font-weight: bold;
+        }
+
+        .premium {
+
+            margin-top: 10px;
+
+            color: gold;
+
+            font-weight: bold;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 12px;
+
+            margin-top: 15px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+        .activar {
+
+            background-color: gold;
+
+            color: black;
+        }
+
+        .quitar {
+
+            background-color: darkred;
+
+            color: white;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>
+    👑 Gestionar Premium
+</h1>
+
+<div th:each="u : ${usuarios}"
+
+     class="usuario">
+
+    <div class="nombre">
+
+        <span th:text="${u.nombre}"></span>
+
+    </div>
+
+    <div class="premium"
+
+         th:if="${u.premium}">
+
+        👑 Usuario Premium
+
+    </div>
+
+    <a th:if="${!u.premium}"
+
+       th:href="@{/darPremium(id=${u.id})}">
+
+        <button class="activar">
+
+            👑 Dar Premium
+
+        </button>
+
+    </a>
+
+    <a th:if="${u.premium}"
+
+       th:href="@{/quitarPremium(id=${u.id})}">
+
+        <button class="quitar">
+
+            ❌ Quitar Premium
+
+        </button>
+
+    </a>
+
+</div>
+
+<a href="/admin">
+
+    <button class="quitar">
+
+        ⬅ Volver
+
+    </button>
+
+</a>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+		  
+    <meta charset="UTF-8">
+
+    <title>Crear Evento</title>
+
+    <style>
+
+        body {
+
+            background-color: #111;
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 40px;
+        }
+
+        .box {
+
+            background-color: #222;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            width: 500px;
+
+            margin: auto;
+        }
+
+        h1 {
+
+            color: gold;
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+        input {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 15px;
+
+            background-color: #333;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 10px;
+
+            font-size: 16px;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 20px;
+
+            background-color: gold;
+
+            color: black;
+
+            border: none;
+
+            border-radius: 10px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>
+        👑 Crear Evento
+    </h1>
+
+    <form action="/guardarEvento"
+          method="post">
+
+        <input type="text"
+
+               name="nombre"
+
+               placeholder="Nombre evento">
+
+        <input type="text"
+
+               name="organizacion"
+
+               placeholder="Organización">
+
+        <input type="text"
+
+               name="lugar"
+
+               placeholder="Lugar">
+
+        <button type="submit">
+
+            Crear evento
+
+        </button>
+
+    </form>
+
+    <a href="/admin">
+
+        <button>
+
+            ⬅ Volver
+
+        </button>
+
+    </a>
+
+</div>
+
+</body>
+</html>

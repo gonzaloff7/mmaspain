@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+		  
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>MMA SPAIN</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            #0a0a0a,
+                            #111
+                    );
+
+            color: white;
+
+            font-family: Arial;
+
+            padding-bottom: 120px;
+        }
+
+        .topbar {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            backdrop-filter: blur(15px);
+
+            background-color: rgba(0,0,0,0.8);
+
+            border-bottom: 1px solid #222;
+
+            padding: 20px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .logo {
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: red;
+
+            letter-spacing: 2px;
+        }
+
+        .usuario {
+
+            font-size: 15px;
+
+            color: lightgray;
+
+            text-align: right;
+        }
+
+        .usuario span {
+
+            color: gold;
+
+            font-weight: bold;
+
+            font-size: 18px;
+        }
+
+        .contenedor {
+
+            padding: 20px;
+        }
+
+        .evento {
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(12px);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 25px;
+
+            padding: 25px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                    0 8px 25px rgba(0,0,0,0.5);
+
+            transition: 0.3s;
+        }
+
+        .evento:hover {
+
+            transform: translateY(-5px);
+
+            border-color: red;
+        }
+
+        .org {
+
+            color: red;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .nombre {
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            margin-top: 12px;
+
+            line-height: 1.2;
+        }
+
+        .lugar {
+
+            color: #cfcfcf;
+
+            margin-top: 15px;
+
+            font-size: 15px;
+        }
+
+        button {
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            background:
+                    linear-gradient(
+                            to right,
+                            red,
+                            darkred
+                    );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+
+            transform: scale(1.03);
+
+            opacity: 0.9;
+        }
+
+        .navbar {
+
+            position: fixed;
+
+            bottom: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            background:
+                    rgba(0,0,0,0.92);
+
+            backdrop-filter: blur(20px);
+
+            border-top: 1px solid #222;
+
+            display: flex;
+
+            justify-content: space-around;
+
+            padding: 15px 0;
+
+            z-index: 999;
+        }
+
+        .navbar a {
+
+            color: white;
+
+            text-decoration: none;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+
+            color: red;
+
+            transform: scale(1.08);
+        }
+
+        .navbar div {
+
+            margin-top: 4px;
+        }
+
+        @media(max-width: 600px) {
+
+            .nombre {
+
+                font-size: 24px;
+            }
+
+            .logo {
+
+                font-size: 22px;
+            }
+
+            .usuario {
+
+                font-size: 13px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+    <div class="logo">
+
+        🥊 MMA SPAIN
+
+    </div>
+
+    <div class="usuario">
+
+        Bienvenido
+
+        <br>
+
+        <span th:text="${usuario.nombre}"></span>
+
+    </div>
+
+</div>
+
+<div class="contenedor">
+
+    <div class="evento"
+         th:each="evento : ${eventos}">
+
+        <div class="org"
+             th:text="${evento.organizacion}">
+        </div>
+
+        <div class="nombre"
+             th:text="${evento.nombre}">
+        </div>
+
+        <div class="lugar">
+
+            📍
+
+            <span th:text="${evento.lugar}"></span>
+
+        </div>
+
+        <a th:href="@{/evento(id=${evento.id})}">
+
+            <button>
+
+                🔥 Ver cartelera
+
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+<div class="navbar">
+
+    <a href="/home">
+
+        🏠
+
+        <div>
+            Home
+        </div>
+
+    </a>
+
+    <a href="/ranking">
+
+        🏆
+
+        <div>
+            Ranking
+        </div>
+
+    </a>
+
+    <a href="/buscador">
+
+        🔍
+
+        <div>
+            Buscar
+        </div>
+
+    </a>
+
+    <a href="/perfil">
+
+        👤
+
+        <div>
+            Perfil
+        </div>
+
+    </a>
+
+    <a href="/settings">
+
+        ⚙️
+
+        <div>
+            Ajustes
+        </div>
+
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+		  
+
+    <meta charset="UTF-8">
+
+    <title>Panel Admin</title>
+
+    <style>
+
+        body {
+
+            background-color: #111;
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 40px;
+        }
+
+        h1 {
+
+            color: gold;
+
+            text-align: center;
+
+            margin-bottom: 40px;
+        }
+
+        .panel {
+
+            background-color: #222;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            margin-bottom: 25px;
+        }
+
+        .titulo {
+
+            color: gold;
+
+            font-size: 24px;
+
+            margin-bottom: 20px;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 15px;
+
+            background-color: gold;
+
+            color: black;
+
+            border: none;
+
+            border-radius: 10px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>
+    👑 PANEL ADMIN
+</h1>
+
+<div class="panel">
+
+    <div class="titulo">
+
+        Eventos
+
+    </div>
+
+	<a href="/crearEvento">
+
+	    <button>
+	        ➕ Crear evento
+	    </button>
+
+	</a>
+
+	<a href="/crearCombate">
+
+	    <button>
+	        🥊 Crear combate
+	    </button>
+
+	</a>
+	<a href="/resultados">
+
+	    <button>
+	        🏆 Poner resultados
+	    </button>
+
+	</a>
+
+</div>
+
+<div class="panel">
+
+    <div class="titulo">
+
+        Usuarios
+
+    </div>
+	<a href="/gestionarPremium">
+
+	    <button>
+	        👑 Gestionar premium
+	    </button>
+
+	</a>
+
+	<a href="/banearUsuarios">
+
+	    <button>
+	        🚫 Banear usuarios
+	    </button>
+
+	</a>
+
+</div>
+
+<div class="panel">
+
+    <div class="titulo">
+
+        Comunidad
+
+    </div>
+
+	<a href="/moderarComentarios">
+
+	    <button>
+	        💬 Moderar comentarios
+	    </button>
+
+	</a>
+
+</div>
+
+<a href="/settings">
+
+    <button>
+
+        ⬅ Volver
+
+    </button>
+
+</a>
+
+</body>
+</html>

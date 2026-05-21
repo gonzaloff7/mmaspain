@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+		  
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Predicción MMA</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            #0a0a0a,
+                            #111
+                    );
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 25px;
+        }
+
+        .volver {
+
+            display: inline-block;
+
+            margin-bottom: 30px;
+
+            padding: 12px 18px;
+
+            background-color: #1f1f1f;
+
+            border: 1px solid #333;
+
+            border-radius: 14px;
+
+            color: white;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .volver:hover {
+
+            background-color: red;
+        }
+
+        .box {
+
+            max-width: 500px;
+
+            margin: auto;
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(16px);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 28px;
+
+            padding: 35px;
+
+            box-shadow:
+                    0 10px 35px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+
+            text-align: center;
+
+            font-size: 38px;
+
+            margin-bottom: 35px;
+
+            color: white;
+        }
+
+        .fighters {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+        .fighter {
+
+            font-size: 26px;
+
+            font-weight: bold;
+        }
+
+        .vs {
+
+            color: red;
+
+            font-size: 34px;
+
+            font-weight: bold;
+
+            margin: 15px 0;
+
+            text-shadow:
+                    0 0 18px red;
+        }
+
+        .label {
+
+            margin-top: 22px;
+
+            margin-bottom: 10px;
+
+            color: gold;
+
+            font-weight: bold;
+
+            font-size: 15px;
+
+            letter-spacing: 1px;
+        }
+
+        select {
+
+            width: 100%;
+
+            padding: 16px;
+
+            border: none;
+
+            border-radius: 16px;
+
+            background-color: #222;
+
+            color: white;
+
+            font-size: 16px;
+
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+        select:focus {
+
+            border: 1px solid red;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 18px;
+
+            margin-top: 35px;
+
+            border: none;
+
+            border-radius: 18px;
+
+            background:
+                    linear-gradient(
+                            to right,
+                            red,
+                            darkred
+                    );
+
+            color: white;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            box-shadow:
+                    0 10px 25px rgba(255,0,0,0.25);
+        }
+
+        button:hover {
+
+            transform: scale(1.03);
+
+            opacity: 0.92;
+        }
+
+        @media(max-width: 600px) {
+
+            h1 {
+
+                font-size: 30px;
+            }
+
+            .fighter {
+
+                font-size: 22px;
+            }
+
+            .vs {
+
+                font-size: 28px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<a th:href="@{/evento(id=${evento})}"
+   class="volver">
+
+    ⬅ Volver cartelera
+
+</a>
+
+<div class="box">
+
+    <h1>
+        🔮 Predicción MMA
+    </h1>
+
+    <div class="fighters">
+
+        <div class="fighter"
+             th:text="${combate.peleador1}">
+        </div>
+
+        <div class="vs">
+
+            VS
+
+        </div>
+
+        <div class="fighter"
+             th:text="${combate.peleador2}">
+        </div>
+
+    </div>
+
+    <form action="/guardarPrediccion"
+          method="post">
+
+        <input type="hidden"
+               name="combate"
+               th:value="${combate.id}">
+
+        <input type="hidden"
+               name="evento"
+               th:value="${evento}">
+
+        <div class="label">
+            🏆 Ganador
+        </div>
+
+        <select name="ganador">
+
+            <option value="1"
+                    th:text="${combate.peleador1}">
+            </option>
+
+            <option value="2"
+                    th:text="${combate.peleador2}">
+            </option>
+
+        </select>
+
+        <div class="label">
+            💥 Método
+        </div>
+
+        <select name="metodo">
+
+            <option value="KO">
+                KO / TKO
+            </option>
+
+            <option value="Submission">
+                Submission
+            </option>
+
+            <option value="Decision">
+                Decision
+            </option>
+
+        </select>
+
+        <div class="label">
+            ⏱ Round
+        </div>
+
+        <select name="round">
+
+            <option value="1">
+                Round 1
+            </option>
+
+            <option value="2">
+                Round 2
+            </option>
+
+            <option value="3">
+                Round 3
+            </option>
+
+            <option value="4">
+                Round 4
+            </option>
+
+            <option value="5">
+                Round 5
+            </option>
+
+        </select>
+
+        <button type="submit">
+
+            🔥 Guardar predicción
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

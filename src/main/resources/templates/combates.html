@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<link rel="manifest"
+	      href="/manifest.json">
+		  
+		  <meta name="theme-color"
+		        content="#d40000">
+		  
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cartelera MMA</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background:
+                    linear-gradient(
+                            to bottom,
+                            #0a0a0a,
+                            #111
+                    );
+
+            color: white;
+
+            font-family: Arial;
+
+            padding: 25px;
+        }
+
+        .top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 35px;
+        }
+
+        h1 {
+
+            color: white;
+
+            font-size: 38px;
+
+            font-weight: bold;
+        }
+
+        .volver {
+
+            background-color: #222;
+
+            border: 1px solid #333;
+
+            padding: 12px 18px;
+
+            border-radius: 12px;
+
+            color: white;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .volver:hover {
+
+            background-color: red;
+        }
+
+        .combate {
+
+            background:
+                    rgba(255,255,255,0.05);
+
+            backdrop-filter: blur(14px);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 28px;
+
+            padding: 30px;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                    0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .fighters {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            text-align: center;
+        }
+
+        .fighter {
+
+            width: 40%;
+        }
+
+        .fighter-name {
+
+            font-size: 26px;
+
+            font-weight: bold;
+
+            line-height: 1.2;
+        }
+
+        .vs {
+
+            font-size: 34px;
+
+            font-weight: bold;
+
+            color: red;
+
+            text-shadow:
+                    0 0 20px red;
+        }
+
+        .acciones {
+
+            margin-top: 30px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            color: white;
+        }
+
+        .prediccion {
+
+            background:
+                    linear-gradient(
+                            to right,
+                            #ff0000,
+                            #990000
+                    );
+        }
+
+        .foro {
+
+            background:
+                    linear-gradient(
+                            to right,
+                            #222,
+                            #444
+                    );
+        }
+
+        .puntuar {
+
+            background:
+                    linear-gradient(
+                            to right,
+                            gold,
+                            #c79b00
+                    );
+
+            color: black;
+        }
+
+        button:hover {
+
+            transform: scale(1.03);
+        }
+
+        @media(max-width: 700px) {
+
+            .fighters {
+
+                flex-direction: column;
+
+                gap: 20px;
+            }
+
+            .fighter {
+
+                width: 100%;
+            }
+
+            .vs {
+
+                font-size: 28px;
+            }
+
+            h1 {
+
+                font-size: 28px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="top">
+
+    <h1>
+        🥊 Cartelera MMA
+    </h1>
+
+    <a href="/home"
+       class="volver">
+
+        ⬅ Volver
+
+    </a>
+
+</div>
+
+<div class="combate"
+     th:each="combate : ${combates}">
+
+    <div class="fighters">
+
+        <div class="fighter">
+
+            <div class="fighter-name"
+                 th:text="${combate.peleador1}">
+            </div>
+
+        </div>
+
+        <div class="vs">
+
+            VS
+
+        </div>
+
+        <div class="fighter">
+
+            <div class="fighter-name"
+                 th:text="${combate.peleador2}">
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="acciones">
+
+        <a th:href="@{/prediccion(
+                combate=${combate.id},
+                p1=${combate.peleador1},
+                p2=${combate.peleador2},
+                evento=${param.id}
+        )}">
+
+            <button class="prediccion">
+
+                🔮 Predecir combate
+
+            </button>
+
+        </a>
+
+        <a th:href="@{/foro(
+                combate=${combate.id},
+                evento=${param.id}
+        )}">
+
+            <button class="foro">
+
+                💬 Entrar al foro
+
+            </button>
+
+        </a>
+
+        <a th:href="@{/puntuar(
+                combate=${combate.id},
+                p1=${combate.peleador1},
+                p2=${combate.peleador2},
+                evento=${param.id}
+        )}">
+
+            <button class="puntuar">
+
+                📊 Puntuar pelea
+
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
