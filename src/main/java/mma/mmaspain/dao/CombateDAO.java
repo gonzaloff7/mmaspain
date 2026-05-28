@@ -19,12 +19,13 @@ public class CombateDAO {
                 new ArrayList<>();
 
         try {
-
+        	
         	Connection con =
         	        DriverManager.getConnection(
-
         	                System.getenv("MYSQL_URL")
         	        );
+
+        	
 
             String sql =
                     "SELECT " +
