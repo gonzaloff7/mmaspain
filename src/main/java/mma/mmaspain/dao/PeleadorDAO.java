@@ -23,11 +23,7 @@ public class PeleadorDAO {
         	Connection con =
         	        DriverManager.getConnection(
 
-        	                "jdbc:mysql://zephyr.proxy.rlwy.net:32502/railway",
-
-        	                "root",
-
-        	                "GmtBrajaURJZBSxwIkXStTVonMnUuDEu"
+        	                System.getenv("MYSQL_URL")
         	        );
 
             String sql =
