@@ -21,15 +21,15 @@ public class UsuarioDAO {
 
 	    try {
 
-	        Connection con =
-	                DriverManager.getConnection(
+	    	Connection con =
+	    	        DriverManager.getConnection(
 
-	                        "jdbc:mariadb://localhost:3306/mma_spain",
+	    	                "jdbc:mysql://zephyr.proxy.rlwy.net:32502/railway",
 
-	                        "mma",
+	    	                "root",
 
-	                        "1234"
-	                );
+	    	                "GmtBrajaURJZBSxwIkXStTVonMnUuDEu"
+	    	        );
 
 	        String sql =
 	                "INSERT INTO usuarios " +
